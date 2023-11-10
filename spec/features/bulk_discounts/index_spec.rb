@@ -55,13 +55,13 @@ RSpec.describe "Merchant Bulk Discounts Index" do
 
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts/new")
 
-          fill_in "Name", with: "Discount C"
-          fill_in "Percentage Discount", with: 20
-          fill_in "Quantity Threshold", with: 12
+          fill_in :name, with: "Discount C"
+          fill_in :percentage_discount, with: 20
+          fill_in :quantity_threshold, with: 12
           click_button "Submit"
 
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
-          
+
           expect(page).to have_link("Discount C")
           expect(page).to have_content("Percentage Discount: 20%")
           expect(page).to have_content("Quantity Threshold: 12")
