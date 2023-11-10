@@ -3,9 +3,10 @@ require "rails_helper"
 RSpec.describe "Merchant Bulk Discounts Index" do
   before :each do
     @merchant1 = Merchant.create!(name: "Hair Care")
-    @merchant2 = Merchant.create!(name: "Hair Care")
+    @merchant2 = Merchant.create!(name: "Candles")
 
-    @bulk_discount1 = BulkDiscount.create!(percentage_discount: 10, quantity_threshold: 5, merchant_id: @merchant1.id)
+    @discount_a = BulkDiscount.create!(name: "Discount A", percentage_discount: 10, quantity_threshold: 5, merchant_id: @merchant1.id)
+    @discount_b = BulkDiscount.create!(name: "Discount B", percentage_discount: 20, quantity_threshold: 10, merchant_id: @merchant1.id)
   end
   
   #User Story 1
@@ -21,7 +22,13 @@ RSpec.describe "Merchant Bulk Discounts Index" do
 
         expect(current_path).to eq "/merchants/#{@merchant1.id}/bulk_discounts"
 
-        expect(page).to have_content(@bulk_discounts1)
+        expect(page).to have_link(@discount_a.name)
+        expect(page).to have_content(@discount_a.percentage_discount)
+        expect(page).to have_content(@discount_a.quantity_threshold)
+
+        expect(page).to have_link(@discount_b.name)
+        expect(page).to have_content(@discount_b.percentage_discount)
+        expect(page).to have_content(@discount_b.quantity_threshold)
 
       end
     end
