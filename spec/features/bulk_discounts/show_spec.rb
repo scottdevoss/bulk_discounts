@@ -34,10 +34,10 @@ RSpec.describe "Merchant Bulk Discounts Show Page" do
             click_link("Edit this Bulk Discount")
 
             expect(current_path).to eq("/bulk_discounts/#{@discount_a.id}/edit")
-
-            expect(:name).to have_content(@discount_a.name)
-            expect(:percentage_discount).to have_content(@discount_a.percentage_discount)
-            expect(:quantity_threshold).to have_content(@discount_a.quantity_threshold)
+            
+            expect(find_field("Name").value).to eq "Discount A"
+            expect(find_field("Percentage discount").value).to eq "10"
+            expect(find_field("Quantity threshold").value).to eq "5"
 
             fill_in :quantity_threshold, with: 14
             click_button "Submit"
