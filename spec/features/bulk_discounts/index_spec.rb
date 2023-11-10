@@ -68,4 +68,15 @@ RSpec.describe "Merchant Bulk Discounts Index" do
       end
     end
   end
+
+  #User Story 3
+  describe "Merchant Buld Discount Delete" do
+    describe "When I visit my bulk discounts index" do
+      describe "Next to each bulk discount I see a button to delete it" do
+        it "When I click delete, I am redirected to the bulk discounts index page and I no longer see the discount listed" do
+          
+        end
+      end
+    end
+  end
 end
