@@ -14,7 +14,6 @@ RSpec.describe "Merchant Bulk Discounts Index" do
     describe "When I click this link then I am taken to my bulk discounts index page" do
       it "Where I see all of my bulk discounts including their percentage discount and quantity thresholds and each bulk discount listed includes a link to its show page" do
         
-        require 'pry'; binding.pry
         visit "/merchants/#{@merchant1.id}/dashboard"
 
         expect(page).to have_link("View all my discounts")
@@ -29,6 +28,10 @@ RSpec.describe "Merchant Bulk Discounts Index" do
         expect(page).to have_link(@discount_b.name)
         expect(page).to have_content(@discount_b.percentage_discount)
         expect(page).to have_content(@discount_b.quantity_threshold)
+
+        click_link(@discount_a.name)
+
+        expect(current_path).to eq "/bulk_discounts/#{@discount_a.id}"
 
       end
     end
