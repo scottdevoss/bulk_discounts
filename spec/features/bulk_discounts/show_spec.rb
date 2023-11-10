@@ -28,6 +28,25 @@ RSpec.describe "Merchant Bulk Discounts Show Page" do
         describe "And I see that the discounts current attributes are pre-populated in the form" do
           it "When I change any/all of the information and click submit I am redirected to the show page and see the attribues have been updated" do
             
+            visit "/bulk_discounts/#{@discount_a.id}"
+
+            expect(page).to have_link("Edit this Bulk Discount")
+            click_link("Edit this Bulk Discount")
+
+            expect(current_path).to eq("/bulk_discounts/#{@discount_a.id}/edit")
+
+            expect(:name).to have_content(@discount_a.name)
+            expect(:percentage_discount).to have_content(@discount_a.percentage_discount)
+            expect(:quantity_threshold).to have_content(@discount_a.quantity_threshold)
+
+            fill_in :quantity_threshold, with: 14
+            click_button "Submit"
+
+            expect(current_path).to eq("/bulk_discounts/#{@discount_a.id}")
+
+            expect(page).to have_content(@discount_a.name)
+            expect(page).to have_content(@discount_a.percentage_discount)
+            expect(page).to have_content("Quantity Threshold: 14")
           end
         end
       end
