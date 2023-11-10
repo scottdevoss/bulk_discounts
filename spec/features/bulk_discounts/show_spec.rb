@@ -21,5 +21,18 @@ RSpec.describe "Merchant Bulk Discounts Show Page" do
 
       expect(page).to_not have_content(@discount_b.name)
     end
+
+    #User Story 5
+    describe "I see a link to edit the bulk discount" do
+      describe "When I click the link I am taken to a new page with a form to edit the discount" do
+        describe "And I see that the discounts current attributes are pre-populated in the form" do
+          it "When I change any/all of the information and click submit I am redirected to the show page and see the attribues have been updated" do
+            
+          end
+        end
+      end
+    end
   end
+
+
 end 
