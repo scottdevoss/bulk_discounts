@@ -1,0 +1,11 @@
+<h1><%= "Edit this Bulk Discount" %></h1>
+
+<%= form_with url: "/bulk_discounts/#{@discount.id}", method: :post do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name, value: "#{@discount.name}" %>
+  <%= form.label :percentage_discount %>
+  <%= form.text_field :percentage_discount, value: "#{@discount.percentage_discount}" %>
+  <%= form.label :quantity_threshold %>
+  <%= form.text_field :quantity_threshold, value: "#{@discount.quantity_threshold}" %>
+  <%= form.submit "Submit" %>
+<% end %>

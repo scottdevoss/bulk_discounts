@@ -2,4 +2,6 @@
 
 <%= @discount.name %><br>
 <%= "Percentage Discount: #{@discount.percentage_discount}%" %><br>
-<%= "Quantity Threshold: #{@discount.quantity_threshold}" %>
+<%= "Quantity Threshold: #{@discount.quantity_threshold}" %><br>
+
+<%= link_to "Edit this Bulk Discount", "/bulk_discounts/#{@discount.id}/edit" %>
