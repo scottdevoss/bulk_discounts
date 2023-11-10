@@ -47,7 +47,24 @@ RSpec.describe "Merchant Bulk Discounts Index" do
     describe "When I visit my bulk discounts index, then I see a link to create a new discount" do
       describe "When I click this link, I am taken to a new page where I see a form to add a new bulk discount" do
         it "I fill in the form and am redirected back to the bulk discount index and I see my new bulk discount listed" do
+         
+          visit "/merchants/#{@merchant1.id}/bulk_discounts"
+
+          expect(page).to have_link("Create a new bulk discount")
+          click_link("Create a new bulk discount")
+
+          expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts/new")
+
+          fill_in "Name", with: "Discount C"
+          fill_in "Percentage Discount", with: 20
+          fill_in "Quantity Threshold", with: 12
+          click_button "Submit"
+
+          expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
           
+          expect(page).to have_link("Discount C")
+          expect(page).to have_content("Percentage Discount: 20%")
+          expect(page).to have_content("Quantity Threshold: 12")
         end
       end
     end
