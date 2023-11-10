@@ -28,6 +28,7 @@ RSpec.describe "Merchant Bulk Discounts Index" do
         expect(page).to have_link(@discount_b.name)
         expect(page).to have_content(@discount_b.percentage_discount)
         expect(page).to have_content(@discount_b.quantity_threshold)
+        save_and_open_page
 
         click_link(@discount_a.name)
 
