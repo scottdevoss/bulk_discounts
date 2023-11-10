@@ -49,21 +49,44 @@ RSpec.describe "Merchant Bulk Discounts Index" do
         it "I fill in the form and am redirected back to the bulk discount index and I see my new bulk discount listed" do
          
           visit "/merchants/#{@merchant1.id}/bulk_discounts"
-
           expect(page).to have_link("Create a new bulk discount")
           click_link("Create a new bulk discount")
-
+          
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts/new")
-
+          
           fill_in :name, with: "Discount C"
           fill_in :percentage_discount, with: 20
           fill_in :quantity_threshold, with: 12
           click_button "Submit"
-
+          
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
           expect(page).to have_link("Discount C")
           expect(page).to have_content("Percentage Discount: 20%")
           expect(page).to have_content("Quantity Threshold: 12")
+        end
+      end
+    end
+  end
+
+  #User Story 3
+  describe "Merchant Buld Discount Delete" do
+    describe "When I visit my bulk discounts index" do
+      describe "Next to each bulk discount I see a button to delete it" do
+        it "When I click delete, I am redirected to the bulk discounts index page and I no longer see the discount listed" do
+
+          visit "/merchants/#{@merchant1.id}/bulk_discounts"
+
+          expect(page).to have_link(@discount_a.name)
+          expect(page).to have_content(@discount_a.percentage_discount)
+          expect(page).to have_content(@discount_a.quantity_threshold)
+
+          expect(page).to have_button("Delete #{@discount_a.name}")
+          expect(page).to have_button("Delete #{@discount_b.name}")
+
+          click_button("Delete #{@discount_a.name}")
+          expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
+
+          expect(page).to_not have_link(@discount_a.name)
         end
       end
     end
