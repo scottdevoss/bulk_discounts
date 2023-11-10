@@ -24,4 +24,8 @@ class BulkDiscountsController < ApplicationController
     discount.destroy
     redirect_to "/merchants/#{@merchant.id}/bulk_discounts"
   end
+
+  def edit
+    
+  end
 end
