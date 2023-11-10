@@ -41,4 +41,15 @@ RSpec.describe "Merchant Bulk Discounts Index" do
       end
     end
   end
+
+  #User Story 2
+  describe "Merchant Bulk Discount Create" do
+    describe "When I visit my bulk discounts index, then I see a link to create a new discount" do
+      describe "When I click this link, I am taken to a new page where I see a form to add a new bulk discount" do
+        it "I fill in the form and am redirected back to the bulk discount index and I see my new bulk discount listed" do
+          
+        end
+      end
+    end
+  end
 end
