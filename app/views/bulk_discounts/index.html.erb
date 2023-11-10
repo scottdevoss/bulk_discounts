@@ -4,5 +4,6 @@
   <%= link_to discount.name, "/bulk_discounts/#{discount.id}" %><br>
   <%= "Percentage Discount: #{discount.percentage_discount}%" %><br>
   <%= "Quantity Threshold: #{discount.quantity_threshold}" %><br><br>
-
 <% end %>
+
+<%= link_to "Create a new bulk discount", "/merchants/#{@merchant.id}/bulk_discounts/new" %>

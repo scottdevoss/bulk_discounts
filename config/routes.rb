@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   get "/merchants/:id/bulk_discounts", to: "bulk_discounts#index"
   get "/bulk_discounts/:id", to: "bulk_discounts#show"
+  get "/merchants/:id/bulk_discounts/new", to: "bulk_discounts#new"
 end
