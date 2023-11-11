@@ -52,6 +52,4 @@ RSpec.describe "Merchant Bulk Discounts Show Page" do
       end
     end
   end
-
-
 end 
