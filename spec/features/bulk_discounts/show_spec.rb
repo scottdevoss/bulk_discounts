@@ -43,7 +43,7 @@ RSpec.describe "Merchant Bulk Discounts Show Page" do
             click_button "Submit"
 
             expect(current_path).to eq("/bulk_discounts/#{@discount_a.id}")
-
+            
             expect(page).to have_content(@discount_a.name)
             expect(page).to have_content(@discount_a.percentage_discount)
             expect(page).to have_content("Quantity Threshold: 14")
