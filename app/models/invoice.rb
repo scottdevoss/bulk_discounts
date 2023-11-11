@@ -22,6 +22,5 @@ class Invoice < ApplicationRecord
 
   def discount_applied
     
-    require 'pry'; binding.pry
   end
 end

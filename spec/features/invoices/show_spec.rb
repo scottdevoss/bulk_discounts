@@ -127,7 +127,9 @@ RSpec.describe "invoices show" do
       within("#bulk-discount") do
         
         expect(page).to have_link(@discount_a.name)
+        #invoice_item 1 should get 10% off
         expect(page).to have_link(@discount_b.name)
+        #invoice_item 11 should get 20% off
       end
 
       click_link(@discount_a.name)
