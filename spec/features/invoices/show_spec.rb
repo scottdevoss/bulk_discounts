@@ -100,4 +100,14 @@ RSpec.describe "invoices show" do
     end
   end
 
+  #User Story 6
+  describe "When I visit my merchant invoice show page" do
+    describe "Then I see the total revenue for my merchant from this invoice (not including discounts)" do
+      it "And I see the total discounted revenue for my merchant from this invoice which includes bulk discounts in the calculation" do
+        
+        visit merchant_invoice_path(@merchant1, @invoice_1)
+        # merchant_invoice GET    /merchants/:merchant_id/invoices/:id
+      end
+    end
+  end
 end
