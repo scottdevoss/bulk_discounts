@@ -15,6 +15,6 @@ class Invoice < ApplicationRecord
   end
 
   def discounted_revenue
-    discounted_revenue = invoice_items.sum("unit_price * quantity * CASE WHEN quantity >= 10 THEN 0.8 WHEN quantity >= 5 THEN 0.9 ELSE 1.0 END")
+    invoice_items.sum("unit_price * quantity * CASE WHEN quantity >= 10 THEN 0.8 WHEN quantity >= 5 THEN 0.9 ELSE 1.0 END")
   end
 end
