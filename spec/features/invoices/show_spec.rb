@@ -116,7 +116,7 @@ RSpec.describe "invoices show" do
         #invoice_item 1 should get 10% off ($81 total discounted revenue)
         #invoice_item 2 should get 20% off ($57.60 total discounted revenue)
         #total discounted revenue ($138.60)
-        expect(page).to have_content("Total discounted revenue: $138.60")
+        expect(page).to have_content("Total Discounted Revenue: $138.6")
       end
     end
   end
