@@ -15,10 +15,11 @@ RSpec.describe "Merchant Bulk Discounts Show Page" do
 
       visit "/bulk_discounts/#{@discount_a.id}"
 
-      expect(page).to have_content(@discount_a.name)
-      expect(page).to have_content(@discount_a.percentage_discount)
-      expect(page).to have_content(@discount_a.quantity_threshold)
-
+      within("#show-page") do
+        expect(page).to have_content(@discount_a.name)
+        expect(page).to have_content(@discount_a.percentage_discount)
+        expect(page).to have_content(@discount_a.quantity_threshold)
+      end
       expect(page).to_not have_content(@discount_b.name)
     end
 
@@ -46,9 +47,11 @@ RSpec.describe "Merchant Bulk Discounts Show Page" do
 
             expect(current_path).to eq("/bulk_discounts/#{@discount_a.id}")
             
+            
             expect(page).to have_content(@discount_a.name)
             expect(page).to have_content(@discount_a.percentage_discount)
             expect(page).to have_content("Quantity Threshold: 14")
+            
           end
         end
       end
