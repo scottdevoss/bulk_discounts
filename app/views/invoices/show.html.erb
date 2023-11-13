@@ -42,6 +42,10 @@
                   <%= f.select :status, Invoice.statuses.keys, selected: "#{@invoice.status}" %>
                   <%= f.submit 'Update Invoice' %>
                 <% end %>
+                <% discount = i.applied_discounts.max_by(&:percentage_discount) %>
+              <% if discount %>
+                <%= link_to "Applied Discount: #{discount.percentage_discount}% off", "/bulk_discounts/#{discount.id}" %>
+              <% end %>
                 </td>
             </tr>
           </section>

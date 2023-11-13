@@ -15,5 +15,7 @@ class InvoiceItem < ApplicationRecord
     Invoice.order(created_at: :asc).find(invoice_ids)
   end
 
-  
+  def applied_discounts
+    item.merchant.bulk_discounts.where("quantity_threshold <= ?", quantity)
+  end
 end
