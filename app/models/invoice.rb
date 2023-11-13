@@ -16,6 +16,7 @@ class Invoice < ApplicationRecord
   end
 
   def discounted_revenue
+    # require 'pry'; binding.pry
     invoice_items.sum("unit_price * quantity * CASE WHEN quantity >= 10 THEN 0.8 WHEN quantity >= 5 THEN 0.9 ELSE 1.0 END")
     # discounted_revenue = invoice_items.sum("price * quantity * CASE WHEN quantity >= #{quantity_threshold} THEN (1 - #{percentage_discount.to_f / 100}) WHEN quantity >= #{quantity_threshold} THEN (1 - #{percentage_discount.to_f / 100}) ELSE 1 END")
     
