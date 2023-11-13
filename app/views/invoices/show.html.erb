@@ -12,7 +12,7 @@
 
   <p> Created on: <%= @invoice.created_at.strftime("%A, %B %-d, %Y") %></p>
   <p>Total Revenue: <%= @invoice.total_revenue %></p>
-  <p>Total Discounted Revenue: $<%= @invoice.discounted_revenue %></p>
+  <p>Total Discounted Revenue: $<%= @invoice.total_discounted_revenue %></p>
 
   <h4>Customer:</h4>
     <%= @customer.first_name %> <%= @customer.last_name %><br>
@@ -33,6 +33,7 @@
         <% @invoice.invoice_items.each do |i| %>
           <section id="the-status-<%= i.id %>">
             <tr class="tr">
+              
               <td style="text-align:center"><%= i.item.name %></td>
               <td style="text-align:center"><%= i.quantity %></td>
               <td style="text-align:center">$<%= i.unit_price %></td>
@@ -41,6 +42,10 @@
                   <%= f.select :status, Invoice.statuses.keys, selected: "#{@invoice.status}" %>
                   <%= f.submit 'Update Invoice' %>
                 <% end %>
+                <% discount = i.applied_discounts.max_by(&:percentage_discount) %>
+              <% if discount %>
+                <%= link_to "Applied Discount: #{discount.percentage_discount}% off", "/bulk_discounts/#{discount.id}" %>
+              <% end %>
                 </td>
             </tr>
           </section>

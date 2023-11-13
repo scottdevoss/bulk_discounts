@@ -18,16 +18,18 @@ RSpec.describe "Merchant Bulk Discounts Index" do
 
         expect(page).to have_link("View all my discounts")
         click_link("View all my discounts")
-
+        
         expect(current_path).to eq "/merchants/#{@merchant1.id}/bulk_discounts"
-
-        expect(page).to have_link(@discount_a.name)
-        expect(page).to have_content(@discount_a.percentage_discount)
-        expect(page).to have_content(@discount_a.quantity_threshold)
-
-        expect(page).to have_link(@discount_b.name)
-        expect(page).to have_content(@discount_b.percentage_discount)
-        expect(page).to have_content(@discount_b.quantity_threshold)
+        
+        within("#discounts-index") do
+          expect(page).to have_link(@discount_a.name)
+          expect(page).to have_content(@discount_a.percentage_discount)
+          expect(page).to have_content(@discount_a.quantity_threshold)
+          
+          expect(page).to have_link(@discount_b.name)
+          expect(page).to have_content(@discount_b.percentage_discount)
+          expect(page).to have_content(@discount_b.quantity_threshold)
+        end
 
         click_link(@discount_a.name)
 
@@ -54,10 +56,12 @@ RSpec.describe "Merchant Bulk Discounts Index" do
           
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts/new")
           
-          fill_in :name, with: "Discount C"
-          fill_in :percentage_discount, with: 20
-          fill_in :quantity_threshold, with: 12
-          click_button "Submit"
+          within("#bulk-discount-creation") do
+            fill_in :name, with: "Discount C"
+            fill_in :percentage_discount, with: 20
+            fill_in :quantity_threshold, with: 12
+            click_button "Submit"
+          end 
           
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
           expect(page).to have_link("Discount C")
