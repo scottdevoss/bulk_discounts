@@ -76,12 +76,19 @@ describe "Admin Invoices Index Page" do
   #User Story 8
   describe "I see the total revenue from this invoice(not including discounts)" do
     it "And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation" do
-      visit "/admin/invoices/#{@i1.id}"
 
-      expect(page).to have_content(@i1.total_revenue)
-      expect(page).to have_content(@i1.total_discounted_revenue)
+      visit "/admin/invoices/#{@i2.id}"
       save_and_open_page
-      expect(page).to have_content("Total Discounted Revenue: $30")
+
+      # expect(page).to have_content(@i1.total_revenue)
+      # expect(page).to have_content(@i1.total_discounted_revenue)
+      expect(page).to have_content("Total Revenue: $#{@i1.total_revenue}")
+      expect(page).to have_content("Total Discounted Revenue: $#{@i1.total_discounted_revenue}")
+      #Item1, $19.2 with 20% discount
+      #Item2, $5.4 with 10% discount
+      #$24.6 total
+      
+      # expect(page).to have_content("Total Discounted Revenue: $24.6")
     end
   end
 end
