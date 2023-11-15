@@ -134,7 +134,6 @@ RSpec.describe "invoices show" do
         
       end
       
-      # save_and_open_page
       
       click_link(@discount_a.percentage_discount)
 

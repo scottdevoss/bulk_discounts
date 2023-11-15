@@ -55,13 +55,15 @@ RSpec.describe "Merchant Bulk Discounts Index" do
           click_link("Create a new bulk discount")
           
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts/new")
+          # save_and_open_page
+          # click_button "Submit"
+          # expect(page).to have_content("Bulk Discount not created: Required information missing")
           
-          within("#bulk-discount-creation") do
-            fill_in :name, with: "Discount C"
-            fill_in :percentage_discount, with: 20
-            fill_in :quantity_threshold, with: 12
-            click_button "Submit"
-          end 
+          fill_in :name, with: "Discount C"
+          fill_in :percentage_discount, with: 20
+          fill_in :quantity_threshold, with: 12
+          click_button "Submit"
+        
           
           expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
           expect(page).to have_link("Discount C")
@@ -93,6 +95,27 @@ RSpec.describe "Merchant Bulk Discounts Index" do
           expect(page).to_not have_link(@discount_a.name)
         end
       end
+    end
+
+    it "redirects the user to fill in every field" do
+      visit "/merchants/#{@merchant1.id}/bulk_discounts/new"
+      # save_and_open_page
+      fill_in :name, with: "Discount C"
+      click_button "Submit"
+      expect(page).to have_content("Bulk Discount not created: Required information missing")
+
+      expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts/new")
+      
+      fill_in :name, with: "Discount C"
+      fill_in :percentage_discount, with: 20
+      fill_in :quantity_threshold, with: 12
+      click_button "Submit"
+    
+      expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
+      expect(page).to have_link("Discount C")
+      expect(page).to have_content("Percentage Discount: 20%")
+      expect(page).to have_content("Quantity Threshold: 12")
+        
     end
   end
 end

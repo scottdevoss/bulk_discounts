@@ -1,7 +1,7 @@
 <section id="bulk-discount-creation">
   <h1><%= "Create New Bulk Discount" %></h1>
 
-  <%= form_with url: "/merchants/#{@merchant.id}/bulk_discounts", method: :post do |form| %>
+  <%= form_with url: "/merchants/#{@merchant.id}/bulk_discounts", method: :post, data: {turbo: false} do |form| %>
     <%= form.label :name %>
     <%= form.text_field :name %><br>
     <%= form.label :percentage_discount %>
