@@ -133,7 +133,9 @@ RSpec.describe "invoices show" do
         #invoice_item 11 should get 20% off
         
       end
-
+      
+      # save_and_open_page
+      
       click_link(@discount_a.percentage_discount)
 
       expect(current_path).to eq "/bulk_discounts/#{@discount_a.id}"
